@@ -14,6 +14,7 @@ defmodule LiveFlow.Handle do
     * `:connect_type` - Optional type constraint atom (e.g., `:data`, `:control`)
     * `:style` - Custom inline styles
     * `:class` - Custom CSS classes
+    * `:label` - Label
 
   ## Examples
 
@@ -31,13 +32,15 @@ defmodule LiveFlow.Handle do
           connectable: boolean(),
           connect_type: atom() | nil,
           style: map(),
-          class: String.t() | nil
+          class: String.t() | nil,
+          label: String.t() | nil
         }
 
   defstruct [
     :id,
     :class,
     :connect_type,
+    :label,
     type: :source,
     position: :bottom,
     connectable: true,
@@ -54,6 +57,7 @@ defmodule LiveFlow.Handle do
     * `:connect_type` - Type constraint atom for validation (default: `nil`)
     * `:style` - Custom inline styles
     * `:class` - Custom CSS classes
+    * `:label` - Label
 
   ## Examples
 
@@ -72,7 +76,8 @@ defmodule LiveFlow.Handle do
       connectable: Keyword.get(opts, :connectable, true),
       connect_type: Keyword.get(opts, :connect_type),
       style: Keyword.get(opts, :style, %{}),
-      class: Keyword.get(opts, :class)
+      class: Keyword.get(opts, :class),
+      label: Keyword.get(opts, :label)
     }
   end
 
