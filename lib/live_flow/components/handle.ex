@@ -16,6 +16,7 @@ defmodule LiveFlow.Components.Handle do
     * `:handle` - The `LiveFlow.Handle` struct (required)
     * `:node_id` - ID of the parent node (required)
     * `:class` - Additional CSS classes
+    * `:label` - Label to show next to the handle
 
   ## Examples
 
@@ -24,6 +25,7 @@ defmodule LiveFlow.Components.Handle do
   attr :handle, LiveFlow.Handle, required: true
   attr :node_id, :string, required: true
   attr :class, :string, default: nil
+  attr :label, :string, default: nil
 
   def handle(assigns) do
     handle = assigns.handle
@@ -51,6 +53,7 @@ defmodule LiveFlow.Components.Handle do
       data-node-id={@node_id}
       style={handle_style(@handle)}
     >
+      <span :if={@label}>{@label}</span>
     </div>
     """
   end
@@ -63,6 +66,7 @@ defmodule LiveFlow.Components.Handle do
   attr :node_id, :string, required: true
   attr :connectable, :boolean, default: true
   attr :class, :string, default: nil
+  attr :label, :string, default: nil
 
   def source(assigns) do
     handle =
@@ -71,7 +75,7 @@ defmodule LiveFlow.Components.Handle do
     assigns = assign(assigns, :handle, handle)
 
     ~H"""
-    <.handle handle={@handle} node_id={@node_id} class={@class} />
+    <.handle handle={@handle} node_id={@node_id} class={@class} label={@label} />
     """
   end
 
@@ -83,6 +87,7 @@ defmodule LiveFlow.Components.Handle do
   attr :node_id, :string, required: true
   attr :connectable, :boolean, default: true
   attr :class, :string, default: nil
+  attr :label, :string, default: nil
 
   def target(assigns) do
     handle =
@@ -91,7 +96,7 @@ defmodule LiveFlow.Components.Handle do
     assigns = assign(assigns, :handle, handle)
 
     ~H"""
-    <.handle handle={@handle} node_id={@node_id} class={@class} />
+    <.handle handle={@handle} node_id={@node_id} class={@class} label={@label} />
     """
   end
 
